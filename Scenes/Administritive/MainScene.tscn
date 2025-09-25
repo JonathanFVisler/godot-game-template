@@ -1,11 +1,16 @@
-[gd_scene load_steps=11 format=3 uid="uid://7a4e28yje6xf"]
+[gd_scene load_steps=16 format=3 uid="uid://7a4e28yje6xf"]
 
-[ext_resource type="Script" uid="uid://cdboynm6pvuqt" path="res://Scripts/SceneLoader.cs" id="1_sec6i"]
+[ext_resource type="Script" uid="uid://cdboynm6pvuqt" path="res://Scripts/Administrative/SceneLoader.cs" id="1_sec6i"]
 [ext_resource type="Script" uid="uid://dr0lvr3dovyqc" path="res://Scripts/SceneEntry.cs" id="2_pgkvr"]
 [ext_resource type="PackedScene" uid="uid://cjw2exfpy7tu2" path="res://Scenes/Menus/MainMenu.tscn" id="3_v7j7c"]
 [ext_resource type="PackedScene" uid="uid://dqhue80f6n27t" path="res://Scenes/Placeholder/Placeholder1.tscn" id="4_txh5a"]
 [ext_resource type="PackedScene" uid="uid://ue7c62l6qpbi" path="res://Scenes/Menus/SettingsMenu.tscn" id="4_v7j7c"]
 [ext_resource type="PackedScene" uid="uid://cispm15njp3et" path="res://Scenes/Placeholder/Placeholder2.tscn" id="5_g3tyv"]
+[ext_resource type="Script" uid="uid://bcq5yiivmbp7e" path="res://Scripts/Administrative/GameManager.cs" id="7_txh5a"]
+[ext_resource type="AudioStream" uid="uid://ovhb6yix1sdj" path="res://Audio/Music/PlaceholderMusic.wav" id="8_g3tyv"]
+[ext_resource type="Script" uid="uid://bsxjdoej4w2t6" path="res://Scripts/Administrative/BGMAudioManager.cs" id="8_gl7bu"]
+[ext_resource type="Script" uid="uid://bty8s74rkp8kc" path="res://Scripts/ClickSFX.cs" id="10_1prkb"]
+[ext_resource type="AudioStream" uid="uid://cy74o0slsilj2" path="res://Audio/SFX/ClickSFX.wav" id="10_npu38"]
 
 [sub_resource type="Resource" id="Resource_gl7bu"]
 script = ExtResource("2_pgkvr")
@@ -34,3 +39,21 @@ metadata/_custom_type_script = "uid://dr0lvr3dovyqc"
 [node name="MainScene" type="Node2D"]
 script = ExtResource("1_sec6i")
 sceneEntries = Array[ExtResource("2_pgkvr")]([SubResource("Resource_gl7bu"), SubResource("Resource_1prkb"), SubResource("Resource_npu38"), SubResource("Resource_cap8d")])
+
+[node name="GameManager" type="Node2D" parent="."]
+script = ExtResource("7_txh5a")
+
+[node name="BGMAudioManager" type="Node2D" parent="." node_paths=PackedStringArray("musicPlayer")]
+script = ExtResource("8_gl7bu")
+musicPlayer = [NodePath("AudioStreamPlayer2D"), NodePath("AudioStreamPlayer2D2")]
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="BGMAudioManager"]
+stream = ExtResource("8_g3tyv")
+autoplay = true
+
+[node name="AudioStreamPlayer2D2" type="AudioStreamPlayer2D" parent="BGMAudioManager"]
+visible = false
+
+[node name="ClickSFXAudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("10_npu38")
+script = ExtResource("10_1prkb")

@@ -1,12 +1,20 @@
-[gd_scene format=3 uid="uid://cispm15njp3et"]
+[gd_scene load_steps=3 format=3 uid="uid://cispm15njp3et"]
+
+[ext_resource type="Script" uid="uid://bjn8q70a46vj3" path="res://Scripts/UI/UIResizer.cs" id="1_dw8iy"]
+[ext_resource type="PackedScene" uid="uid://ytu1r445o3pw" path="res://Scenes/Objects/UI/SceneLoadButton.tscn" id="1_qrxr2"]
 
 [node name="Placeholder2" type="Node2D"]
 
 [node name="Control" type="Control" parent="."]
 layout_mode = 3
-anchors_preset = 0
-offset_right = 1152.0
-offset_bottom = 648.0
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = 1280.0
+offset_bottom = 720.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_dw8iy")
 
 [node name="VBoxContainer" type="VBoxContainer" parent="Control"]
 layout_mode = 1
@@ -23,16 +31,13 @@ theme_override_font_sizes/font_size = 64
 text = "Placeholder 2"
 horizontal_alignment = 1
 
-[node name="Button" type="Button" parent="Control/VBoxContainer"]
-custom_minimum_size = Vector2(300, 150)
+[node name="SceneLoadButton" parent="Control/VBoxContainer" instance=ExtResource("1_qrxr2")]
 layout_mode = 2
-size_flags_horizontal = 4
 size_flags_vertical = 6
 text = "To Placeholder 1"
+sceneToLoad = 2
 
-[node name="Button2" type="Button" parent="Control/VBoxContainer"]
-custom_minimum_size = Vector2(300, 150)
+[node name="SceneLoadButton2" parent="Control/VBoxContainer" instance=ExtResource("1_qrxr2")]
 layout_mode = 2
-size_flags_horizontal = 4
 size_flags_vertical = 6
 text = "To Main Menu"

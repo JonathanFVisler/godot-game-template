@@ -5,10 +5,36 @@ using System.Linq;
 
 public partial class SceneLoader : Node2D
 {
+    // Godot friendly Singleton
+    public static SceneLoader Instance
+    {
+        get;
+        private set;
+    }
+
+    private SceneLoader() { }
+    
+    public override void _EnterTree()
+    {
+        if (Instance != null && Instance != this)
+        {
+            QueueFree();
+            return;
+        }
+        Instance = this;
+    }
+
+    public override void _ExitTree()
+    {
+        if (Instance == this) Instance = null;
+    }
+
+    // -----------------------------------------------------------------------
+
     [Export] private Godot.Collections.Array<SceneEntry> sceneEntries = new();
     private Dictionary<GameScene, PackedScene> sceneDict;
     private Dictionary<GameScene, bool> sceneExist;
-    private Node2D[] loadedScenes;
+    private Node2D[] loadedScenes = new Node2D[0];
 
     public override void _Ready()
     {
@@ -21,10 +47,16 @@ public partial class SceneLoader : Node2D
                 sceneDict.Add(entry.SceneType, entry.Scene);
             }
         }
-        LoadScene(GameScene.MAINMENU);
+        LoadSceneAdditive(GameScene.MAINMENU);
     }
 
     public void LoadScene(GameScene sceneType)
+    {
+        UnloadAllScenes();
+        LoadSceneAdditive(sceneType);
+    }
+
+    public void LoadSceneAdditive(GameScene sceneType)
     {
         if (sceneExist.TryGetValue(sceneType, out var exists) && exists)
         {
@@ -36,9 +68,10 @@ public partial class SceneLoader : Node2D
         {
             var instance = packedScene.Instantiate();
             instance.Name = sceneType.ToString();
-            GetTree().Root.AddChild(instance);
+            GetTree().Root.CallDeferred(Node.MethodName.AddChild, instance);
             sceneExist[sceneType] = true;
-            loadedScenes.Append(instance as Node2D);
+            GD.Print("Got to here");
+            loadedScenes = loadedScenes.Append(instance as Node2D).ToArray();
             GD.Print($"Loaded scene: {sceneType}");
         }
         else
@@ -101,7 +134,7 @@ public partial class SceneLoader : Node2D
     public void ReloadScene(GameScene sceneType)
     {
         UnloadScene(sceneType);
-        LoadScene(sceneType);
+        LoadSceneAdditive(sceneType);
         GD.Print($"Reloaded scene: {sceneType}");
     }
 

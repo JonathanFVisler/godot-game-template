@@ -1,0 +1,9 @@
+[gd_scene load_steps=2 format=3 uid="uid://ytu1r445o3pw"]
+
+[ext_resource type="Script" uid="uid://cjw3gqn5vh8dm" path="res://Scripts/UI/SceneLoadButton.cs" id="1_iovtp"]
+
+[node name="SceneLoadButton" type="Button"]
+custom_minimum_size = Vector2(300, 150)
+size_flags_horizontal = 4
+size_flags_vertical = 4
+script = ExtResource("1_iovtp")

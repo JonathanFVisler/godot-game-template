@@ -1,12 +1,25 @@
-[gd_scene format=3 uid="uid://ue7c62l6qpbi"]
+[gd_scene load_steps=7 format=3 uid="uid://ue7c62l6qpbi"]
+
+[ext_resource type="PackedScene" uid="uid://ytu1r445o3pw" path="res://Scenes/Objects/UI/SceneLoadButton.tscn" id="1_enyfb"]
+[ext_resource type="Script" uid="uid://dy1mlcele0ns5" path="res://Scripts/Administrative/SettingsMenuManager.cs" id="1_gl23i"]
+[ext_resource type="Script" uid="uid://caqsuy647a2fn" path="res://Scripts/UI/ResolutionDropdown.cs" id="2_leijj"]
+[ext_resource type="Script" uid="uid://bjn8q70a46vj3" path="res://Scripts/UI/UIResizer.cs" id="2_nqyte"]
+[ext_resource type="Script" uid="uid://st2vp4ws8tk4" path="res://Scripts/UI/PercentateLabel.cs" id="3_5a14u"]
+[ext_resource type="Script" uid="uid://bawyx4dj567fp" path="res://Scripts/UI/SoundSettingsSlider.cs" id="3_o3ial"]
 
 [node name="SettingsMenu" type="Node2D"]
+script = ExtResource("1_gl23i")
 
 [node name="Control" type="Control" parent="."]
 layout_mode = 3
-anchors_preset = 0
-offset_right = 1152.0
-offset_bottom = 648.0
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = 1280.0
+offset_bottom = 720.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("2_nqyte")
 
 [node name="VBoxContainer" type="VBoxContainer" parent="Control"]
 layout_mode = 1
@@ -57,6 +70,7 @@ custom_minimum_size = Vector2(400, 10)
 layout_mode = 2
 size_flags_horizontal = 4
 value = 50.0
+script = ExtResource("3_o3ial")
 
 [node name="Label2" type="Label" parent="Control/VBoxContainer/SoundVBoxContainer/MasterHBoxContainer"]
 custom_minimum_size = Vector2(50, 0)
@@ -64,6 +78,7 @@ layout_mode = 2
 size_flags_horizontal = 6
 text = "50%"
 horizontal_alignment = 2
+script = ExtResource("3_5a14u")
 
 [node name="MusicHBoxContainer2" type="HBoxContainer" parent="Control/VBoxContainer/SoundVBoxContainer"]
 custom_minimum_size = Vector2(600, 0)
@@ -82,6 +97,8 @@ custom_minimum_size = Vector2(400, 10)
 layout_mode = 2
 size_flags_horizontal = 4
 value = 50.0
+script = ExtResource("3_o3ial")
+soundType = 1
 
 [node name="Label2" type="Label" parent="Control/VBoxContainer/SoundVBoxContainer/MusicHBoxContainer2"]
 custom_minimum_size = Vector2(50, 0)
@@ -89,6 +106,7 @@ layout_mode = 2
 size_flags_horizontal = 6
 text = "50%"
 horizontal_alignment = 2
+script = ExtResource("3_5a14u")
 
 [node name="EffectHBoxContainer3" type="HBoxContainer" parent="Control/VBoxContainer/SoundVBoxContainer"]
 custom_minimum_size = Vector2(600, 0)
@@ -107,6 +125,8 @@ custom_minimum_size = Vector2(400, 10)
 layout_mode = 2
 size_flags_horizontal = 4
 value = 50.0
+script = ExtResource("3_o3ial")
+soundType = 2
 
 [node name="Label2" type="Label" parent="Control/VBoxContainer/SoundVBoxContainer/EffectHBoxContainer3"]
 custom_minimum_size = Vector2(50, 0)
@@ -114,6 +134,7 @@ layout_mode = 2
 size_flags_horizontal = 6
 text = "50%"
 horizontal_alignment = 2
+script = ExtResource("3_5a14u")
 
 [node name="ScreenHBoxContainer" type="HBoxContainer" parent="Control/VBoxContainer"]
 layout_mode = 2
@@ -133,17 +154,39 @@ popup/item_0/id = 0
 popup/item_1/text = "Fullscreen"
 popup/item_1/id = 1
 
+[node name="ResolutionHBoxContainer" type="HBoxContainer" parent="Control/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+
+[node name="Label" type="Label" parent="Control/VBoxContainer/ResolutionHBoxContainer"]
+layout_mode = 2
+text = "Resolution"
+
+[node name="OptionButton" type="OptionButton" parent="Control/VBoxContainer/ResolutionHBoxContainer"]
+custom_minimum_size = Vector2(100, 28)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+script = ExtResource("2_leijj")
+
 [node name="SeperatorControl2" type="Control" parent="Control/VBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 3
 
-[node name="BackButton" type="Button" parent="Control/VBoxContainer"]
-custom_minimum_size = Vector2(300, 150)
+[node name="SceneLoadButton" parent="Control/VBoxContainer" instance=ExtResource("1_enyfb")]
 layout_mode = 2
-size_flags_horizontal = 4
-size_flags_vertical = 4
 text = "Back"
 
 [node name="SeperatorControl3" type="Control" parent="Control/VBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 3
+
+[connection signal="value_changed" from="Control/VBoxContainer/SoundVBoxContainer/MasterHBoxContainer/HSlider" to="." method="SetMasterVolume"]
+[connection signal="value_changed" from="Control/VBoxContainer/SoundVBoxContainer/MasterHBoxContainer/HSlider" to="Control/VBoxContainer/SoundVBoxContainer/MasterHBoxContainer/Label2" method="SetValue"]
+[connection signal="value_changed" from="Control/VBoxContainer/SoundVBoxContainer/MusicHBoxContainer2/HSlider" to="." method="SetMusicVolume"]
+[connection signal="value_changed" from="Control/VBoxContainer/SoundVBoxContainer/MusicHBoxContainer2/HSlider" to="Control/VBoxContainer/SoundVBoxContainer/MusicHBoxContainer2/Label2" method="SetValue"]
+[connection signal="value_changed" from="Control/VBoxContainer/SoundVBoxContainer/EffectHBoxContainer3/HSlider" to="." method="SetSFXVolume"]
+[connection signal="value_changed" from="Control/VBoxContainer/SoundVBoxContainer/EffectHBoxContainer3/HSlider" to="Control/VBoxContainer/SoundVBoxContainer/EffectHBoxContainer3/Label2" method="SetValue"]
+[connection signal="item_selected" from="Control/VBoxContainer/ScreenHBoxContainer/OptionButton" to="." method="SetFullscreen"]
+[connection signal="item_selected" from="Control/VBoxContainer/ResolutionHBoxContainer/OptionButton" to="." method="SetResolution"]
