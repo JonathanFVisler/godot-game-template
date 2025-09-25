@@ -1,0 +1,36 @@
+[gd_scene load_steps=11 format=3 uid="uid://7a4e28yje6xf"]
+
+[ext_resource type="Script" uid="uid://cdboynm6pvuqt" path="res://Scripts/SceneLoader.cs" id="1_sec6i"]
+[ext_resource type="Script" uid="uid://dr0lvr3dovyqc" path="res://Scripts/SceneEntry.cs" id="2_pgkvr"]
+[ext_resource type="PackedScene" uid="uid://cjw2exfpy7tu2" path="res://Scenes/Menus/MainMenu.tscn" id="3_v7j7c"]
+[ext_resource type="PackedScene" uid="uid://dqhue80f6n27t" path="res://Scenes/Placeholder/Placeholder1.tscn" id="4_txh5a"]
+[ext_resource type="PackedScene" uid="uid://ue7c62l6qpbi" path="res://Scenes/Menus/SettingsMenu.tscn" id="4_v7j7c"]
+[ext_resource type="PackedScene" uid="uid://cispm15njp3et" path="res://Scenes/Placeholder/Placeholder2.tscn" id="5_g3tyv"]
+
+[sub_resource type="Resource" id="Resource_gl7bu"]
+script = ExtResource("2_pgkvr")
+SceneType = 0
+Scene = ExtResource("3_v7j7c")
+metadata/_custom_type_script = "uid://dr0lvr3dovyqc"
+
+[sub_resource type="Resource" id="Resource_1prkb"]
+script = ExtResource("2_pgkvr")
+SceneType = 1
+Scene = ExtResource("4_v7j7c")
+metadata/_custom_type_script = "uid://dr0lvr3dovyqc"
+
+[sub_resource type="Resource" id="Resource_npu38"]
+script = ExtResource("2_pgkvr")
+SceneType = 2
+Scene = ExtResource("4_txh5a")
+metadata/_custom_type_script = "uid://dr0lvr3dovyqc"
+
+[sub_resource type="Resource" id="Resource_cap8d"]
+script = ExtResource("2_pgkvr")
+SceneType = 3
+Scene = ExtResource("5_g3tyv")
+metadata/_custom_type_script = "uid://dr0lvr3dovyqc"
+
+[node name="MainScene" type="Node2D"]
+script = ExtResource("1_sec6i")
+sceneEntries = Array[ExtResource("2_pgkvr")]([SubResource("Resource_gl7bu"), SubResource("Resource_1prkb"), SubResource("Resource_npu38"), SubResource("Resource_cap8d")])

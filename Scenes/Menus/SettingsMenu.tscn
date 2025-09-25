@@ -1,0 +1,149 @@
+[gd_scene format=3 uid="uid://ue7c62l6qpbi"]
+
+[node name="SettingsMenu" type="Node2D"]
+
+[node name="Control" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 1152.0
+offset_bottom = 648.0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Control"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="TitleVBoxContainer" type="VBoxContainer" parent="Control/VBoxContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Control/VBoxContainer/TitleVBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 6
+theme_override_font_sizes/font_size = 64
+text = "SETTINGS"
+horizontal_alignment = 1
+
+[node name="Label2" type="Label" parent="Control/VBoxContainer/TitleVBoxContainer"]
+layout_mode = 2
+text = "for those with free will"
+horizontal_alignment = 1
+
+[node name="SeperatorControl" type="Control" parent="Control/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="SoundVBoxContainer" type="VBoxContainer" parent="Control/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+
+[node name="MasterHBoxContainer" type="HBoxContainer" parent="Control/VBoxContainer/SoundVBoxContainer"]
+custom_minimum_size = Vector2(600, 0)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 6
+
+[node name="Label" type="Label" parent="Control/VBoxContainer/SoundVBoxContainer/MasterHBoxContainer"]
+custom_minimum_size = Vector2(60, 0)
+layout_mode = 2
+size_flags_horizontal = 6
+text = "Master"
+
+[node name="HSlider" type="HSlider" parent="Control/VBoxContainer/SoundVBoxContainer/MasterHBoxContainer"]
+custom_minimum_size = Vector2(400, 10)
+layout_mode = 2
+size_flags_horizontal = 4
+value = 50.0
+
+[node name="Label2" type="Label" parent="Control/VBoxContainer/SoundVBoxContainer/MasterHBoxContainer"]
+custom_minimum_size = Vector2(50, 0)
+layout_mode = 2
+size_flags_horizontal = 6
+text = "50%"
+horizontal_alignment = 2
+
+[node name="MusicHBoxContainer2" type="HBoxContainer" parent="Control/VBoxContainer/SoundVBoxContainer"]
+custom_minimum_size = Vector2(600, 0)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 6
+
+[node name="Label" type="Label" parent="Control/VBoxContainer/SoundVBoxContainer/MusicHBoxContainer2"]
+custom_minimum_size = Vector2(60, 0)
+layout_mode = 2
+size_flags_horizontal = 6
+text = "Music"
+
+[node name="HSlider" type="HSlider" parent="Control/VBoxContainer/SoundVBoxContainer/MusicHBoxContainer2"]
+custom_minimum_size = Vector2(400, 10)
+layout_mode = 2
+size_flags_horizontal = 4
+value = 50.0
+
+[node name="Label2" type="Label" parent="Control/VBoxContainer/SoundVBoxContainer/MusicHBoxContainer2"]
+custom_minimum_size = Vector2(50, 0)
+layout_mode = 2
+size_flags_horizontal = 6
+text = "50%"
+horizontal_alignment = 2
+
+[node name="EffectHBoxContainer3" type="HBoxContainer" parent="Control/VBoxContainer/SoundVBoxContainer"]
+custom_minimum_size = Vector2(600, 0)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 6
+
+[node name="Label" type="Label" parent="Control/VBoxContainer/SoundVBoxContainer/EffectHBoxContainer3"]
+custom_minimum_size = Vector2(60, 0)
+layout_mode = 2
+size_flags_horizontal = 6
+text = "Effects"
+
+[node name="HSlider" type="HSlider" parent="Control/VBoxContainer/SoundVBoxContainer/EffectHBoxContainer3"]
+custom_minimum_size = Vector2(400, 10)
+layout_mode = 2
+size_flags_horizontal = 4
+value = 50.0
+
+[node name="Label2" type="Label" parent="Control/VBoxContainer/SoundVBoxContainer/EffectHBoxContainer3"]
+custom_minimum_size = Vector2(50, 0)
+layout_mode = 2
+size_flags_horizontal = 6
+text = "50%"
+horizontal_alignment = 2
+
+[node name="ScreenHBoxContainer" type="HBoxContainer" parent="Control/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+
+[node name="Label" type="Label" parent="Control/VBoxContainer/ScreenHBoxContainer"]
+layout_mode = 2
+text = "Window Type"
+
+[node name="OptionButton" type="OptionButton" parent="Control/VBoxContainer/ScreenHBoxContainer"]
+layout_mode = 2
+selected = 0
+item_count = 2
+popup/item_0/text = "Windowed"
+popup/item_0/id = 0
+popup/item_1/text = "Fullscreen"
+popup/item_1/id = 1
+
+[node name="SeperatorControl2" type="Control" parent="Control/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="BackButton" type="Button" parent="Control/VBoxContainer"]
+custom_minimum_size = Vector2(300, 150)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+text = "Back"
+
+[node name="SeperatorControl3" type="Control" parent="Control/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
