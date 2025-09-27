@@ -47,12 +47,8 @@ public partial class BGMAudioManager : Node2D
     {
         foreach (var player in musicPlayers)
         {
-            GD.Print("Adjusting BGM Volume");
             AudioStreamPlayer2D player2D = player.AudioPlayer2D;
-            GD.Print($"player: {player}");
-            GD.Print($"player2D: {player2D}");
             if (player2D == null) { continue; }
-            GD.Print($"Volume: {AudioMaster.GetMusicVolume(player.volumeModifier)}");
             player2D.VolumeDb = AudioMaster.GetMusicVolume(player.volumeModifier);
         }
     }
