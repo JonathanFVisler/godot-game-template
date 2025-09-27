@@ -18,7 +18,7 @@ public partial class ClickSFX : AudioStreamPlayer2D
 
     private void AdjustVolume()
     {
-        VolumeDb = (float)Mathf.LinearToDb(Settings.SFXVolume * Settings.MasterVolume * modifier);
+        VolumeDb = AudioMaster.GetSFXVolume(modifier);
     }
 
     public override void _Process(double delta)

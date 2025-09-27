@@ -6,6 +6,7 @@ using System.Linq;
 public partial class SceneLoader : Node2D
 {
     // Godot friendly Singleton
+    private static SceneLoader _instance;
     public static SceneLoader Instance
     {
         get;

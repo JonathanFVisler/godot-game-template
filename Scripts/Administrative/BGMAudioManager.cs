@@ -1,5 +1,6 @@
 using Godot;
 using System;
+using System.Linq;
 
 public partial class BGMAudioManager : Node2D
 {
@@ -24,43 +25,74 @@ public partial class BGMAudioManager : Node2D
     public override void _ExitTree()
     {
         if (Instance == this) Instance = null;
-        Settings.OnAudioSettingsChanged -= AdjustVolume;
+        // Settings.OnAudioSettingsChanged -= AdjustVolume;
     }
 
     // -----------------------------------------------------------------------
 
-    [Export] AudioStreamPlayer2D[] musicPlayer;
-    float modifier = 4.0f;
+    [Export] private AudioStreamer[] musicPlayers;
+    private float defaultModifier = 1f;
+
     public override void _Ready()
     {
-        AdjustVolume();
+        foreach (var player in musicPlayers)
+        {
+            player.Initialize(this);
+        }
+        CallDeferred(nameof(AdjustVolume));
         Settings.OnAudioSettingsChanged += AdjustVolume;
     }
 
     public void AdjustVolume()
     {
-        foreach (var player in musicPlayer)
+        foreach (var player in musicPlayers)
         {
-            player.VolumeDb = (float)Mathf.LinearToDb(Settings.MusicVolume * Settings.MasterVolume * modifier);
+            GD.Print("Adjusting BGM Volume");
+            AudioStreamPlayer2D player2D = player.AudioPlayer2D;
+            GD.Print($"player: {player}");
+            GD.Print($"player2D: {player2D}");
+            if (player2D == null) { continue; }
+            GD.Print($"Volume: {AudioMaster.GetMusicVolume(player.volumeModifier)}");
+            player2D.VolumeDb = AudioMaster.GetMusicVolume(player.volumeModifier);
         }
     }
 
-    public void PlayMusic(AudioStream music)
+    public void PlayMusic(AudioStream music, AudioStreamPlayer2D player)
     {
-        if (musicPlayer.Length == 0) return;
+        if (musicPlayers.Length == 0) { return; }
 
-        int index = (int)(GD.Randi() % musicPlayer.Length);
-        var player = musicPlayer[index];
-
-        if (player.Stream == music && player.Playing) return;
-
-        foreach (var p in musicPlayer)
-        {
-            p.Stop();
-        }
+        if (player.Stream == music && player.Playing) { return; }
 
         player.Stream = music;
-        player.VolumeDb = (float)Mathf.LinearToDb(Settings.MusicVolume * Settings.MasterVolume);
+        // AdjustVolume();
         player.Play();
+    }
+
+    public void StopMusic(AudioStreamPlayer2D player)
+    {
+        if (musicPlayers.Length == 0) { return; }
+
+        player.Stop();
+    }
+
+    public void StopAllMusic()
+    {
+        if (musicPlayers.Length == 0) { return; }
+
+        foreach (var player in musicPlayers)
+        {
+            player.AudioPlayer2D.Stop();
+        }
+    }
+
+    public AudioStreamer GetMusicPlayer(int index)
+    {
+        if (index < 0 || index >= musicPlayers.Length) { return null; }
+        return musicPlayers[index];
+    }
+
+    public int GetMusicPlayerCount()
+    {
+        return musicPlayers.Length;
     }
 }

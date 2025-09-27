@@ -3,6 +3,7 @@ using System;
 
 public partial class GameManager : Node2D
 {
+    private static GameManager _instance;
     public static GameManager Instance
     {
         get;

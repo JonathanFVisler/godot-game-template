@@ -3,6 +3,7 @@ using System;
 
 public partial class SettingsMenuManager : Node2D
 {
+    private static SettingsMenuManager _instance;
     public static SettingsMenuManager Instance
     {
         get;
