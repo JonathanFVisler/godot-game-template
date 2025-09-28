@@ -82,3 +82,6 @@ and replace the stream variable in the inspector
 
 ### Change screen resolutions available in settings
 Currently a handful of 16:9 screen resolutions are available in the settings menu. However, if you wish to use/offer other screen resolutions, then they can be added by going to the SettingsMenuManager.cs (res://Scripts/Administrative/SettingsMenuManager.cs), find the "availableResolutions" array and add/remove any screen resolutions you wish. The first parameter is screen width and the second parameter is screen height.
+
+### Local Co-op with keyboard and multiple controllers
+If you want to support the use of both the keyboard and multiple controllers at once, then you can use the setup found in `LocalCoopPlayerBase.cs` (res://Scripts/LocalCoopPlayerBase.cs). Simply set whether the Player instance should look for a keyboard input (`isKeyboard = true`) or a specific controller input (`isKeyboard = false` and `controllerId = [insert number]`). Controller ids is assigned to the controllers the following way. The first connected controller gets an `id=0`, second controller connected gets `id=1`, thrid gets `id=2` and so on.
