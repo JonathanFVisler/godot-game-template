@@ -51,7 +51,6 @@ metadata/_custom_type_script = "uid://ui7pfp78ggsr"
 [node name="MainScene" type="Node2D"]
 script = ExtResource("1_sec6i")
 sceneEntries = Array[ExtResource("2_pgkvr")]([SubResource("Resource_gl7bu"), SubResource("Resource_1prkb"), SubResource("Resource_npu38"), SubResource("Resource_cap8d")])
-gameSceneToAdd = "spike pit"
 
 [node name="GameManager" type="Node2D" parent="."]
 script = ExtResource("7_txh5a")

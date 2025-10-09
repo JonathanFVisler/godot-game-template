@@ -12,8 +12,11 @@ public partial class ResolutionDropdown : OptionButton
 
     private void PopulateMenu()
     {
+        GD.Print("ResolutionDropdown: Populating menu for aspect ratio " + Settings.TargetAspectRatio);
+        Clear();
         foreach (var res in SettingsMenuManager.Instance.availableResolutions)
         {
+            if (!res.aspectRatio.Equals(Settings.TargetAspectRatio)) { continue; }
             AddItem(res.ToString());
         }
 
