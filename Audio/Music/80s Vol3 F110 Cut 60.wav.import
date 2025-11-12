@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://f4tokm8od88x"
+path="res://.godot/imported/80s Vol3 F110 Cut 60.wav-38f39ef605ab5573f219d9be55d4e267.sample"
+
+[deps]
+
+source_file="res://Audio/Music/80s Vol3 F110 Cut 60.wav"
+dest_files=["res://.godot/imported/80s Vol3 F110 Cut 60.wav-38f39ef605ab5573f219d9be55d4e267.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=2

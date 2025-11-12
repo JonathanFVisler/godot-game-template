@@ -7,10 +7,10 @@
 [ext_resource type="PackedScene" uid="uid://ue7c62l6qpbi" path="res://Scenes/Menus/SettingsMenu.tscn" id="4_v7j7c"]
 [ext_resource type="PackedScene" uid="uid://cispm15njp3et" path="res://Scenes/Placeholder/Placeholder2.tscn" id="5_g3tyv"]
 [ext_resource type="Script" uid="uid://bcq5yiivmbp7e" path="res://Scripts/Administrative/GameManager.cs" id="7_txh5a"]
-[ext_resource type="AudioStream" uid="uid://ovhb6yix1sdj" path="res://Audio/Music/PlaceholderMusic.wav" id="8_g3tyv"]
 [ext_resource type="Script" uid="uid://bsxjdoej4w2t6" path="res://Scripts/Administrative/BGMAudioManager.cs" id="8_gl7bu"]
 [ext_resource type="Script" uid="uid://ui7pfp78ggsr" path="res://Scripts/AudioStreamer.cs" id="9_cap8d"]
 [ext_resource type="Script" uid="uid://bty8s74rkp8kc" path="res://Scripts/ClickSFX.cs" id="10_1prkb"]
+[ext_resource type="AudioStream" uid="uid://f4tokm8od88x" path="res://Audio/Music/80s Vol3 F110 Cut 60.wav" id="10_cap8d"]
 [ext_resource type="AudioStream" uid="uid://cy74o0slsilj2" path="res://Audio/SFX/ClickSFX.wav" id="10_npu38"]
 
 [sub_resource type="Resource" id="Resource_gl7bu"]
@@ -60,7 +60,7 @@ script = ExtResource("8_gl7bu")
 musicPlayers = Array[Object]([SubResource("Resource_ige42"), SubResource("Resource_8qh8x")])
 
 [node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="BGMAudioManager"]
-stream = ExtResource("8_g3tyv")
+stream = ExtResource("10_cap8d")
 autoplay = true
 
 [node name="AudioStreamPlayer2D2" type="AudioStreamPlayer2D" parent="BGMAudioManager"]
