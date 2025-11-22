@@ -31,8 +31,8 @@ public partial class SettingsMenuManager : Node2D
 
     public AspectRatio[] availableAspectRatios { get; private set; } =
     [
-        new AspectRatio(8, 5),
         new AspectRatio(16, 9),
+        new AspectRatio(8, 5),
         new AspectRatio(4, 3),
         new AspectRatio(5, 4),
         new AspectRatio(21, 9)

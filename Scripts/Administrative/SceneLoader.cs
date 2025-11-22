@@ -167,13 +167,16 @@ public partial class SceneLoader : Node2D
 
     public void UpdateGameSceneEnum()
     {
+        #if TOOLS
         if (Engine.IsEditorHint())
         {
             GameSceneEditorTools.UpdateGameSceneEnum(gameSceneToAdd);
         }
+        #endif
     }
 }
 
+#if TOOLS
 public partial class GameSceneEditorTools : EditorScript
 {
     public static void UpdateGameSceneEnum(string gameSceneToAdd)
@@ -395,3 +398,4 @@ public partial class GameSceneEditorTools : EditorScript
         }
     }
 }
+#endif
